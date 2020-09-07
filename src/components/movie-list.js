@@ -7,12 +7,12 @@ function MovieList(props){
     }
     return (
 
-        <div >
-            <h1>Movie Name</h1>
+        <div className = "movie">
+            <h1 style={{'width':'45%'}}>Movie Name</h1>
          { props.movies && props.movies.map(movie =>{
           return( 
               <div key = {movie.id}>
-              <h2 onClick={movieClicked(movie)}>{movie.title}</h2>
+              <h2 style={{'cursor': 'pointer'}} onClick={movieClicked(movie)}>{movie.title}</h2>
               </div>
               )
         })}

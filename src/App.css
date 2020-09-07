@@ -7,7 +7,12 @@
 
 }
 
-
+ .movie h1{
+   width:85% ;
+  border-bottom-style: groove;
+  border-bottom-color: coral;
+  border-bottom-width: 7px;
+ }
 .App-header {
   text-align: center;
   font-size: calc(10px + 2vmin);
@@ -19,4 +24,22 @@
 
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
+}
+
+.orange{
+  color: orangered;
+}
+.purple{
+  color: purple;
+}
+
+
+.rate-continer{
+  margin-top : 20px;
+  border-top : 2px solid purple;
+}
+
+.rate-continer .fa-star{
+  font-size: 1.8rem;
+  cursor: pointer;
 }
