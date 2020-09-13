@@ -37,7 +37,6 @@ function MovieDetails(props){
     return (
 
         <React.Fragment >
-                <h1 style={{   'width':'85%' ,'borderBottomStyle': 'groove' ,'borderBottomColor': 'coral', 'borderBottomWidth': '7px'}}>Movie Details && Rating</h1>
                 { props.SelectedMovie  ? (
                 <div >
                     <h2>{props.SelectedMovie.title}</h2>

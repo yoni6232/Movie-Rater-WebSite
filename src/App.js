@@ -2,12 +2,15 @@ import React,{ useState,useEffect } from 'react';
 import './App.css';
 import MovieList from './components/movie-list'
 import MovieDetails from './components/movie-details'
+import MovieForm from './components/movie-form'
 
 
 function App() {
   const [movies , setMovies] = useState([]);
-  const [SelectedMovie,setSelectedMovie] = useState([null])
+  const [SelectedMovie,setSelectedMovie] = useState(null)
+  const [editdMovie,seteditdMovie] = useState(null)
 
+//set the movies list from the django API
   useEffect(()=>{
     fetch("http://127.0.0.1:8000/api/movies/",{
       method : 'GET',
@@ -21,11 +24,42 @@ function App() {
     
   },[])
 
-  const movieClicked = movie => {
-    setSelectedMovie(movie)
-  }
   const loadMovie = movie => {
-    setSelectedMovie(movie)
+    setSelectedMovie(movie);
+    seteditdMovie(null);
+  }
+
+  //set the efited movit to the edit array
+  const editClick = movie => {
+    seteditdMovie(movie);
+    setSelectedMovie(null);
+  }
+//delete function find the movie id and delete from the array
+  const deleteClick = movie => {
+    const newMovieDelete = movies.filter(mov => mov.id !== movie.id)
+    setMovies(newMovieDelete);
+  }
+
+  //search
+  const updatedMovie = movie1 => {
+    const newMovie = movies.map( mov=> {
+      if (mov.id === movie1.id){
+        return movie1
+      } 
+      return mov
+    })
+    setMovies(newMovie)
+  }
+
+  const newMovie = () =>{
+    seteditdMovie({title:'',description:''});
+    setSelectedMovie(null);
+
+  }
+
+  const MovieCreated = movie =>{
+    setMovies([...movies,movie]);
+
   }
 
   return (
@@ -34,9 +68,27 @@ function App() {
       <h1>Movie Rater</h1>
       </header>
       <div className="Layout">
-        <MovieList movies = {movies} movieClicked = {movieClicked}/>
-        
-        <div> <MovieDetails SelectedMovie = {SelectedMovie} MovieUpdate = {loadMovie}/></div>
+      <div>
+      <MovieList 
+       movies = {movies}
+       movieClicked = {loadMovie}
+       editClick={editClick} 
+       deleteClick={deleteClick}
+       />
+
+      <button onClick={newMovie}>New Movie</button>
+      </div>
+       
+        <MovieDetails 
+        SelectedMovie = {SelectedMovie} 
+        MovieUpdate = {loadMovie}
+
+        />
+        { editdMovie ?  
+        <MovieForm editdMovie={editdMovie}  updatedMovie={updatedMovie} MovieCreated={MovieCreated}
+
+        /> : 
+        null}
         </div>
       </div>
   );
