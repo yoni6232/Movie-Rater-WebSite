@@ -5,15 +5,17 @@ import MovieDetails from './components/movie-details'
 import MovieForm from './components/movie-form'
 import {useCookies} from 'react-cookie'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFilm } from '@fortawesome/free-solid-svg-icons'
+import { faFilm,faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 
 function App() {
   const [movies , setMovies] = useState([]);
   const [SelectedMovie,setSelectedMovie] = useState(null)
   const [editdMovie,seteditdMovie] = useState(null)
-  const [token] = useCookies(['mr-token'])
+  // eslint-disable-next-line
+  const [token,setToken,removeToken] = useCookies(['mr-token'])
 
 //set the movies list from the django API
+
   useEffect(()=>{
     fetch("http://127.0.0.1:8000/api/movies/",{
       method : 'GET',
@@ -24,7 +26,7 @@ function App() {
     }).then(resp => resp.json())
     .then(resp => setMovies(resp))
     .catch(err => console.log(err))
-    
+  // eslint-disable-next-line  
   },[])
 
   useEffect(()=>{
@@ -69,6 +71,9 @@ function App() {
     setMovies([...movies,movie]);
   }
 
+  const logOutUser = () =>{
+    removeToken(['mr-token'])
+  }
   return (
     <div className="App">
       <header className="App-header">
@@ -76,6 +81,8 @@ function App() {
       <FontAwesomeIcon icon={faFilm}/>
       <span>Movie Rater</span>
       </h1>
+      <FontAwesomeIcon icon={faSignOutAlt} onClick={logOutUser}/>
+
       </header>
       <div className="Layout">
       <div>
