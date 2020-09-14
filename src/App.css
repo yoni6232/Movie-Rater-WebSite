@@ -26,6 +26,38 @@
   grid-gap: 20px;
 }
 
+.login-continer{
+  width: 50%;
+  margin: 0 25%;
+}
+
+input , textarea {
+  width:100%;
+  padding:10px;
+  margin:8px 0 ;
+  font-size : 0.8rem;
+}
+button :hover{
+  color: aqua;
+  background-color: aquamarine;
+}
+button {
+  color: #444444;
+  background-color: #f3f3f3;
+  padding:5px 10px;
+  border-radius: 2px;
+  font-weight: bold;
+  font-size: 0.8rem;
+  outline:none;
+  cursor: pointer;
+  
+}
+
+button:disabled{
+  color: #f3f3f3;
+  background-color: #444444;
+  cursor: not-allowed;
+}
 .orange{
   color: orangered;
 }
@@ -53,4 +85,12 @@
   font-size : 1.2rem;
   margin: 35px 10px;
   cursor: pointer;
+}
+h1{
+  color:orange
+}
+
+h1 .fa-film{
+  color:white;
+  transform:rotate(30deg) ;
 }

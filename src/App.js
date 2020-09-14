@@ -3,12 +3,15 @@ import './App.css';
 import MovieList from './components/movie-list'
 import MovieDetails from './components/movie-details'
 import MovieForm from './components/movie-form'
-
+import {useCookies} from 'react-cookie'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFilm } from '@fortawesome/free-solid-svg-icons'
 
 function App() {
   const [movies , setMovies] = useState([]);
   const [SelectedMovie,setSelectedMovie] = useState(null)
   const [editdMovie,seteditdMovie] = useState(null)
+  const [token] = useCookies(['mr-token'])
 
 //set the movies list from the django API
   useEffect(()=>{
@@ -16,13 +19,18 @@ function App() {
       method : 'GET',
       headers : {
         'Content-Type' : 'application/json',
-        'Authorization' : 'Token 25b8202fc2131537da6705fa0cd6030e89ab55e8'
+        'Authorization' : `Token ${token['mr-token']}`
       }
     }).then(resp => resp.json())
     .then(resp => setMovies(resp))
     .catch(err => console.log(err))
     
   },[])
+
+  useEffect(()=>{
+    if(!token['mr-token']) window.location.href= '/';
+  },[token])
+
 
   const loadMovie = movie => {
     setSelectedMovie(movie);
@@ -59,13 +67,15 @@ function App() {
 
   const MovieCreated = movie =>{
     setMovies([...movies,movie]);
-
   }
 
   return (
     <div className="App">
       <header className="App-header">
-      <h1>Movie Rater</h1>
+      <h1>
+      <FontAwesomeIcon icon={faFilm}/>
+      <span>Movie Rater</span>
+      </h1>
       </header>
       <div className="Layout">
       <div>
