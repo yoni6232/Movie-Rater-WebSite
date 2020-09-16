@@ -1,5 +1,7 @@
-#Welcome wo my Movie Rater Website the web site devlope with React js and Django to run this app please download the MovieRaterAPI and run it on pycharm
 ## The Movie Rater APP : https://github.com/yoni6232/Movie-Rater-App
+#Welcome wo my Movie Rater Website in this project you can register to my website login and rate ours movie if you want you can add one and describe him
+## This Web Site devlope with Frontend:React js and Backend: Django Python with SQLite as a DB
+-- to run this Web app please download the MovieRaterAPI and run it on pycharm
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
