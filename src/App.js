@@ -17,7 +17,7 @@ function App() {
 //set the movies list from the django API
 
   useEffect(()=>{
-    fetch("http://127.0.0.1:8000/api/movies/",{
+    fetch("http://192.168.56.1:8000/api/movies/",{
       method : 'GET',
       headers : {
         'Content-Type' : 'application/json',

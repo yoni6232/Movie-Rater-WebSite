@@ -1,7 +1,7 @@
 
 export class API{
     static updateMovie(mov_Id,body,token){
-        return fetch(`http://127.0.0.1:8000/api/movies/${mov_Id}/`,{
+        return fetch(`http://192.168.56.1:8000/api/movies/${mov_Id}/`,{
             method : 'PUT',
             headers : {
               'Content-Type' : 'application/json',
@@ -12,7 +12,7 @@ export class API{
           .catch(err => console.log(err))
     }
     static createMovie(body,token){
-      return fetch(`http://127.0.0.1:8000/api/movies/`,{
+      return fetch(`http://192.168.56.1:8000/api/movies/`,{
           method : 'POST',
           headers : {
             'Content-Type' : 'application/json',
@@ -23,7 +23,7 @@ export class API{
         .catch(err => console.log(err))
   }
   static deleteMovie(mov_Id,token){
-    return fetch(`http://127.0.0.1:8000/api/movies/${mov_Id}/`,{
+    return fetch(`http://192.168.56.1:8000/api/movies/${mov_Id}/`,{
         method : 'DELETE',
         headers : {
           'Content-Type' : 'application/json',
@@ -32,7 +32,7 @@ export class API{
       }).catch(err => console.log(err))
 }
 static loginUser(body){
-  return fetch(`http://127.0.0.1:8000/auth/`,{
+  return fetch(`http://192.168.56.1:8000/auth/`,{
       method : 'POST',
       headers : {
         'Content-Type' : 'application/json',
@@ -42,7 +42,7 @@ static loginUser(body){
     .catch(err => console.log(err))
 }
 static registerUser(body){
-  return fetch(`http://127.0.0.1:8000/api/users/`,{
+  return fetch(`http://192.168.56.1:8000/api/users/`,{
       method : 'POST',
       headers : {
         'Content-Type' : 'application/json',
